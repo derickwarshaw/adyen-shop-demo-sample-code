@@ -1,0 +1,18 @@
+{
+  "name": "shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "request": "^2.58.0",
+    "sequelize": "^3.3.2",
+    "sqlite3": "^3.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
