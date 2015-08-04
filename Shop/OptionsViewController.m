@@ -28,7 +28,7 @@
     
     [form addRow:[TKFormRow inputWithTag:@"Version" title:@"Version" value:version]];
 
-    row = [TKFormRow selectorWithTag:@"currency" type:TKFormRowSelectorTypeSegmented title:@"Currency" value:@"USD"];
+    row = [TKFormRow selectorWithTag:@"currency" type:TKFormRowSelectorTypeSegmented title:@"Currency" value:@"GBP"];
     row.selectorOptions = @[@"USD", @"EUR", @"GBP"];
     [form addRow:row];
     

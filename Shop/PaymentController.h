@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 
 @protocol PaymentControllerDelegate <NSObject>
 
-- (void)paymentControllerFinishedWithError:(NSError *)error;
+- (void)paymentControllerFinishedWithResponse:(NSDictionary *)data error:(NSError *)error;
 
 - (void)presentViewController:(UIViewController *)viewControllerToPresent animated: (BOOL)flag completion:(void (^ __nullable)(void))completion;
 - (void)dismissViewControllerAnimated: (BOOL)flag completion: (void (^ __nullable)(void))completion;
@@ -34,6 +34,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) PKPaymentRequest *paymentRequest;
 
 - (void)startPaymentWithDelegate:(id<PaymentControllerDelegate>)delegate merchantReference:(NSString *)reference items:(NSArray *)items doDelivery:(BOOL)doDelivery;
-+ (BOOL)canMakePayments;
+- (BOOL)canMakePayments;
 
 @end

@@ -15,7 +15,7 @@ app.get('/', function(req, res){
   res.send('hello');
 });
 
-app.post('/pay', function(req, res){
+app.post('/api/payment', function(req, res){
   var payment = req.body;
   console.log('Payment', payment);
 
@@ -27,13 +27,8 @@ app.post('/pay', function(req, res){
 
   })
 })
-/*
-PKShippingMethod *item = [PKShippingMethod summaryItemWithLabel:d[@"label"] amount:[NSDecimalNumber decimalNumberWithString:d[@"amount"]]];
-item.detail = d[@"detail"];
-item.identifier = d[@"identifier"];
-*/
 
-app.post('/shipping', function(req, res){
+app.post('/api/shipping', function(req, res){
   var record = req.body;
   console.log('Shipping to', record);
 

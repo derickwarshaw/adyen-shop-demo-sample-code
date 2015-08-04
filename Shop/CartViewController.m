@@ -90,12 +90,12 @@
 
 #pragma mark - PaymentControllerDelegate
 
-- (void)paymentControllerFinishedWithError:(NSError *)error {
-    if (error) ShowError(error);
-}
-
-- (void)paymentControllerRequestRemoteWithParams:(NSDictionary *)params completion:(void (^)(id json, NSError* connectionError))handler {
-    [Server POST:@"/payment" parameters:params completion:handler];
+- (void)paymentControllerFinishedWithResponse:(NSDictionary *)data error:(NSError *)error {
+    if (error) {
+        ShowError(error);
+        return;
+    }
+    if (data) ShowAlert(@"Cool", [data description]);
 }
 
 #pragma mark - Table view data source
