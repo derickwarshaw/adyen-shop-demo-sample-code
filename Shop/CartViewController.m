@@ -20,6 +20,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *payButton;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *deliverySegmentedControl;
 
+@property (strong, nonatomic) IBOutlet UIView *deliveryOptionsView;
+@property (strong, nonatomic) IBOutlet UIView *payButtonView;
+
 // Apple pay
 @property (nonatomic, strong) PaymentController *paymentController;
 @property (nonatomic, assign) BOOL doDelivery;
@@ -30,7 +33,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    //  Add empty cart label.
+    UILabel *emptyCartLabel = [[UILabel alloc] init];
+    emptyCartLabel.text = @"There are no items in your cart.";
+    emptyCartLabel.font = [UIFont systemFontOfSize:18.f weight:UIFontWeightLight];
+    emptyCartLabel.textAlignment = NSTextAlignmentCenter;
+    emptyCartLabel.textColor = [UIColor lightGrayColor];
+    self.tableView.backgroundView = emptyCartLabel;
     
     [[DB shared] addItemToCart:[DB shared].items.lastObject];
 }
@@ -60,12 +70,20 @@
 }
 
 - (void)update {
+    [self updateEmptyCartView];
     [self.tableView reloadData];
 }
 
 - (IBAction)pickupTypeChanged:(id)sender {
     UISegmentedControl *sc = sender;
     self.doDelivery = (sc.selectedSegmentIndex == 1);
+}
+
+- (void)updateEmptyCartView {
+    NSUInteger count = [DB shared].cartItems.count;
+    self.deliveryOptionsView.hidden = (count == 0);
+    self.payButtonView.hidden = (count == 0);
+    self.tableView.backgroundView.hidden = (count > 0);
 }
 
 #pragma mark - Payment
@@ -95,7 +113,12 @@
         ShowError(error);
         return;
     }
-    if (data) ShowAlert(@"Cool", [data description]);
+    if (data) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[DB shared] deleteCart];
+            [self update];
+        });
+    }
 }
 
 #pragma mark - Table view data source
@@ -105,7 +128,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [DB shared].cartItems.count;
+    NSUInteger count = [DB shared].cartItems.count;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -132,6 +156,7 @@
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         SItem *item = [[DB shared] cartItemForIndexPath:indexPath];
         [[DB shared] deleteItemFromCart:item];
+        [self updateEmptyCartView];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
