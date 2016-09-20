@@ -64,12 +64,7 @@
   @[@"Idea",        @"Good ideas come from everywhere, but the best ones come from developers", @"7.99"],
   @[@"Support",     @"A call from the support team", @"3.31"],
   @[@"Fix",         @"Quick fix from IS department.", @"9.99"],
-  @[@"Newspaper",   @"If you feel you want to know what's going on", @"1.99"],
-  @[@"Test 1.00",   @"Test product #1", @"1.00"],
-  @[@"Test 2.00",   @"Test product #2", @"2.00"],
-  @[@"Test 5.00",   @"Test product #3", @"5.00"],
-  @[@"Test 3.00",   @"Test product #4", @"3.00"],
-  @[@"Test 18.00",   @"Test product #5", @"18.00"],
+  @[@"Newspaper",   @"If you feel you want to know what's going on", @"1.99"]
   ];
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:is.count];

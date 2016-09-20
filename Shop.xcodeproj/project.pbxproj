@@ -263,6 +263,9 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = B2NYSS5932;
 						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
 							com.apple.OMC = {
 								enabled = 1;
 							};
@@ -490,6 +493,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adyen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -507,6 +511,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adyen.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

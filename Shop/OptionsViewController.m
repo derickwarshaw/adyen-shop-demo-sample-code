@@ -32,17 +32,12 @@
     row.selectorOptions = @[@"USD", @"EUR", @"GBP"];
     [form addRow:row];
     
-    DB *db = [DB shared];
-    [form addRow:[TKFormRow switchWithTag:@"test" title:@"Test" value:db.test]];
-    
 }
 
 - (void)rowValueHasChanged:(TKFormRow *)row oldValue:(id)oldValue newValue:(id)newValue {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([row.tag isEqualToString:@"currency"]) {
         [DB shared].currency = newValue;
-    } else if ([row.tag isEqualToString:@"test"]) {
-        [DB shared].test = [newValue boolValue];
     } else if ([row.tag isEqualToString:@"token"]) {
         [ud setObject:newValue forKey:@"token"];
         [ud synchronize];

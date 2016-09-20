@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSMutableArray *cartItems;
 @property (nonatomic, strong) NSString *currency;
 
-@property (nonatomic, assign) BOOL test;
 
 + (DB *)shared;
 

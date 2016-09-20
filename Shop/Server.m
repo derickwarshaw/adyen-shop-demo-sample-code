@@ -46,9 +46,9 @@
 
 + (NSMutableURLRequest *)requestPath:(NSString *)path method:(NSString *)method params:(NSDictionary *)params {
 
-    //NSString *baseUrl = @"http://madyen.mrt.io";
+    NSString *baseUrl = @"http://madyen.mrt.io";
     //NSString *baseUrl = @"http://172.20.14.93:8080";
-    NSString *baseUrl = @"http://localhost:8080";
+    //NSString *baseUrl = @"http://localhost:8080";
 
     NSURL *url = [NSURL URLWithString:baseUrl];
     url = [url URLByAppendingPathComponent:path];
